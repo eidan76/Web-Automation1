@@ -149,3 +149,5 @@ signUp_RegisterButton = [By.XPATH, "//div[@id='button']/div"]
 signUp_ErrorMessage = [By.CSS_SELECTOR, "div.error-message"]
 #Preset list OK button
 signUp_start = [By.ID, "start"]
+
+#CHANGE!!!
