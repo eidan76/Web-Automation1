@@ -8,13 +8,14 @@ class EditNote(unittest.TestCase):
         InitCase.init_case(menu="ALL", taskOption="note")
         self.verificationErrors = []
         noteText = "edit edit edit edit"
+        Config.find_element(Config.note).clear()
         Config.find_element(Config.note).send_keys(noteText)
 
-        try: self.assertEqual(" ", Config.find_element(Config.task_badgeByIconName, "notes").get_attribute("data-badge"))
+        try: self.assertEqual(" ", Config.find_element(Config.task_badgeByIconName, "note").get_attribute("data-badge"))
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         Config.find_element(Config.task_closeButton).click()
-        InitCase.task_options("notes")
+        InitCase.task_options("note")
 
-        try: self.assertEqual(noteText, Config.find_element(Config.task_badgeByIconName, "notes"))
+        try: self.assertEqual(noteText, Config.find_element(Config.note).text)
         except AssertionError as e: self.verificationErrors.append(str(e))

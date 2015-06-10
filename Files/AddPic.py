@@ -18,7 +18,7 @@ class AddPic(unittest.TestCase):
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         #Check files badge = 1
-        try: self.assertEqual("1", Config.find_element(Config.task_badgeByIconName).get_attribute("data-badge"))
+        try: self.assertEqual("1", Config.find_element(Config.task_badgeByIconName, "files").get_attribute("data-badge"))
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         self.assertEqual([], self.verificationErrors)

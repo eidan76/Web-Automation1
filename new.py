@@ -21,10 +21,12 @@ def nsuite():
 
     n = unittest.TestSuite()
     n.addTest(Signup.SignUp("test"))
+    """
     n.addTest(General.general())
     n.addTest(Lists.lists())
     n.addTest(Views.views())
     n.addTest(Subtasks.subtasks())
+    """
     n.addTest(Files.files())
 
     return n
