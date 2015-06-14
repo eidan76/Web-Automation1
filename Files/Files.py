@@ -17,7 +17,6 @@ from Utils import InitSuite
 def files():
     n = unittest.TestSuite()
     n.addTest(InitSuite.InitSuite("test"))
-    """
     n.addTest(AddPic.AddPic("test"))
     n.addTest(PreviewPic.PreviewPic("test"))
     n.addTest(DeletePic.DeletePic("test"))
@@ -26,8 +25,7 @@ def files():
     n.addTest(AddVideo.AddVideo("test"))
     n.addTest(PreviewVideo.PreviewVideo("test"))
     n.addTest(DeleteVideo.DeleteVideo("test"))
-    """
     n.addTest(AddNote.AddNote("test"))
     n.addTest(EditNote.EditNote("test"))
-    #n.addTest(GoogleDrive.GoogleDrive("test"))
+    n.addTest(GoogleDrive.GoogleDrive("test"))
     return n
