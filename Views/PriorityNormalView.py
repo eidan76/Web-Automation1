@@ -2,14 +2,13 @@ __author__ = 'Eidan Wasser'
 # -*- coding: utf-8 -*-
 import unittest
 
-from Utils import InitSuite, Config, InitCase
+from Utils import Config, InitCase
 
 class PriorityNormalView(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", view="priority")
+        taskID = InitCase.init_case(menu="ALL", view="priority")
         self.verificationErrors = []
-        taskID = InitSuite.taskID
 
         Config.find_element(Config.taskTitle).click()
 

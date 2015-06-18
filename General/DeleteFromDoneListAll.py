@@ -12,11 +12,9 @@ from Utils import ClearAllTasks, CreateTaskF, InitCase, Config
 class DeleteFormDoneListAll(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskNo=2)
         self.verificationErrors = []
 
-        CreateTaskF.create_a_task("1", "Today")
-        CreateTaskF.create_a_task("2", "Today")
         ClearAllTasks.clear_all_tasks()
 
         Config.find_element(Config.openSettings).click()

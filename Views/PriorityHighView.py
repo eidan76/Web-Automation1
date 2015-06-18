@@ -1,16 +1,13 @@
 __author__ = 'Eidan Wasser'
 # -*- coding: utf-8 -*-
 import unittest
-from Utils import InitSuite, Config, InitCase
+from Utils import Config, InitCase
 
 class PriorityHighView(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", view="priority")
+        taskID = InitCase.init_case(menu="ALL", view="priority", taskOption="open")
         self.verificationErrors = []
-        taskID = InitSuite.taskID
-
-        Config.find_element(Config.taskTitle).click()
 
         Config.wait_for_element(Config.task_PrioritySelectorOff)
         Config.find_element(Config.task_PrioritySelectorOff).click()

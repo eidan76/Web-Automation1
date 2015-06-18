@@ -10,10 +10,8 @@ from Utils import ClearAllTasks, InitCase, Config
 class TodayAdd(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", view="date")
+        InitCase.init_case(menu="ALL", view="date", taskNo=0)
         self.verificationErrors = []
-
-        ClearAllTasks.clear_all_tasks()
 
         #Create task in tomorrow then change date to today from quick add
         Config.find_element(Config.list_addTaskToSectionByName, "Tomorrow").click()

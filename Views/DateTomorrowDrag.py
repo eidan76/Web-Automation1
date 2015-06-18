@@ -2,15 +2,14 @@
 import unittest, time
 from selenium.webdriver.common.action_chains import ActionChains
 
-from Utils import InitSuite, Config, InitCase
+from Utils import Config, InitCase
 
 
 class DragTomorrow(unittest.TestCase):
     
     def test(self):
-        InitCase.init_case(menu="ALL", view="date")
+        taskID = InitCase.init_case(menu="ALL", view="date")
         self.verificationErrors = []
-        taskID = InitSuite.taskID
 
         ActionChains(Config.get_driver()).drag_and_drop(Config.find_element(Config.taskByID, taskID), Config.find_element(Config.list_sectionByName, "Tomorrow")).perform()
         Config.find_element(Config.taskTitleID, taskID).click()

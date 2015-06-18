@@ -7,12 +7,10 @@ import Swipe
 import Unswipe
 import Delete
 import Edit
-from Utils import InitSuite
 
 
 def subtasks():
     n = unittest.TestSuite()
-    n.addTest(InitSuite.InitSuite("test"))
     n.addTest(Add.Add("test"))
     n.addTest(Edit.Edit("test"))
     n.addTest(Swipe.Swipe("test"))

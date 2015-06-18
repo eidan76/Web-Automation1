@@ -15,30 +15,30 @@ class GoogleDrive(unittest.TestCase):
         InitCase.init_case(menu="ALL", taskOption="files")
         mainWindow = driver.current_window_handle
         self.verificationErrors = []
-        Config.find_element([By.CSS_SELECTOR, "div.drive-file-input-wrapper"]).click()
+        Config.find_element(Config.files_google).click()
 
         google = driver.window_handles
         google.remove(mainWindow)
         driver.switch_to_window(google)
 
-        driver.find_element_by_id("Email").clear()
-        driver.find_element_by_id("Email").send_keys("anydoeidan15@gmail.com")
-        driver.find_element_by_id("Passwd").clear()
-        driver.find_element_by_id("Passwd").send_keys("mobiitnow")
-        driver.find_element_by_id("signIn").click()
+        Config.find_element([By.ID, "Email"]).clear()
+        Config.find_element([By.ID, "Email"]).send_keys("anydoeidan15@gmail.com")
+        Config.find_element([By.ID, "Passwd"]).clear()
+        Config.find_element([By.ID, "Passwd"]).send_keys("mobiitnow")
+        Config.find_element([By.ID, "signIn"]).click()
 
         Config.wait_for_element([By.XPATH, "//button[@id=\"submit_approve_access\" and @disabled]"], present=False)
-        driver.find_element_by_id("submit_approve_access").click()
+        Config.find_element([By.ID, "submit_approve_access"]).click()
 
         driver.switch_to.window(mainWindow)
         driveFrame = [By.CSS_SELECTOR, "iframe.picker-frame.picker-dialog-frame"]
-        Config.wait_for_element(driveFrame, trys=8)
+        Config.wait_for_element(driveFrame)
         driver.switch_to.frame(Config.find_element(driveFrame))
 
         driveFile = [By.XPATH, "//div[@class=\"Nd-ie-te-O-xe-ye\"]"]
         Config.wait_for_element(driveFile)
         Config.find_element(driveFile).click()
-        driver.find_element_by_id("picker:ap:0").click()
+        Config.find_element([By.ID, "picker:ap:0"]).click()
 
         driver.switch_to.default_content()
         Config.wait_for_element(Config.files_name)

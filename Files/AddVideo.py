@@ -9,7 +9,7 @@ class AddVideo(unittest.TestCase):
         self.verificationErrors = []
 
         Config.find_element(Config.files_addFromComputer).send_keys("C:\\Users\\Eidan Wasser\\PycharmProjects\\Suite1\\Files\\vid.mp4")
-        Config.wait_for_element(Config.files_progressBar, present=False, trys=10)
+        Config.wait_for_element(Config.files_progressBar, present=False)
 
         try: self.assertEqual("vid.mp4", Config.find_element(Config.files_name).text)
         except AssertionError as e: self.verificationErrors.append(str(e))

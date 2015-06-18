@@ -11,12 +11,11 @@ import PreviewVideo
 import DeleteVideo
 import GoogleDrive
 import AddNote, EditNote
-from Utils import InitSuite
-
+import Dropbox
 
 def files():
     n = unittest.TestSuite()
-    n.addTest(InitSuite.InitSuite("test"))
+
     n.addTest(AddPic.AddPic("test"))
     n.addTest(PreviewPic.PreviewPic("test"))
     n.addTest(DeletePic.DeletePic("test"))
@@ -28,4 +27,5 @@ def files():
     n.addTest(AddNote.AddNote("test"))
     n.addTest(EditNote.EditNote("test"))
     n.addTest(GoogleDrive.GoogleDrive("test"))
+    n.addTest(Dropbox.AddFromDropbox("test"))
     return n

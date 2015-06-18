@@ -11,9 +11,8 @@ from Utils import Config, InitCase
 class RestoreFromDeleted(unittest.TestCase):
 
     def test(self):
-
+        InitCase.init_case(menu="ALL", taskNo=0)
         self.verificationErrors = []
-        taskID = CreateTask.taskID
         Config.find_element(Config.openSettings).click()
 
         Config.wait_for_element(Config.settings_CompletedTasks)
@@ -36,7 +35,7 @@ class RestoreFromDeleted(unittest.TestCase):
         try: self.assertEqual("edited", Config.find_element(Config.taskTitle).text)
         except AssertionError as e: self.verificationErrors.append(str(e))
 
-        try: self.assertEqual("unchecked", Config.find_element(Config.taskByID, taskID).get_attribute("data-status"))
+        try: self.assertEqual("unchecked", Config.find_element(Config.task).get_attribute("data-status"))
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         self.assertEqual([], self.verificationErrors)

@@ -12,14 +12,13 @@ class Delete(unittest.TestCase):
 
         InitCase.init_case(menu="ALL")
         self.verificationErrors = []
-        taskID = CreateTask.taskID
 
         Config.find_element(Config.taskCheck).click()
         time.sleep(1)
 
         for i in range(5):
             try:
-                Config.find_element(Config.taskMarkDoneID, taskID).click()
+                Config.find_element(Config.taskMarkDone).click()
                 break
             except: pass
             time.sleep(1)

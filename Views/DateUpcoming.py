@@ -2,17 +2,16 @@
 import unittest
 import datetime
 
-from Utils import InitSuite, Config, InitCase
+from Utils import Config, InitCase
 
 
 class Upcoming(unittest.TestCase):
     
     def test(self):
-        InitCase.init_case(menu="ALL", view="date")
+        taskID = InitCase.init_case(menu="ALL", view="date", taskOption="open")
         self.verificationErrors = []
-        taskID = InitSuite.taskID
 
-        Config.find_element(Config.taskTitleID, taskID).click()
+
         Config.find_element(Config.task_TimeSelector).click()
 
         #Find what it the selected day in the date selector and select the date 2 days from then

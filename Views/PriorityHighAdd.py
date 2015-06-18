@@ -6,11 +6,9 @@ from Utils import ClearAllTasks, CreateTaskF, InitCase, Config
 class PriorityHighAdd(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", view="priority")
+        InitCase.init_case(menu="ALL", view="priority", taskNo=0)
         self.verificationErrors = []
 
-        ClearAllTasks.clear_all_tasks()
-        global taskID
         taskID = CreateTaskF.create_a_task("priHigh", "High")
 
         try: self.assertTrue(Config.is_element_present(Config.taskPriority))

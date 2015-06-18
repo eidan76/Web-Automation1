@@ -14,7 +14,7 @@ class Result(result.TestResult):
     """
     separator1 = '=' * 70
     separator2 = '-' * 70
-    tab = " " * 10
+    tab = " " * 9
     failedList = []
 
     def __init__(self, stream, descriptions, verbosity, runName):
@@ -37,15 +37,16 @@ class Result(result.TestResult):
     def startTestRun(self):
         branch = "Placeholder"
         d = datetime.datetime.now()
-        self.stream.write("Test Run: " + self.runName + self.tab + "Start time: " + d.strftime("%d/%m/%y %H:%M:%S"))
+        self.stream.writeln("Test Run: " + self.runName + self.tab + "Start time: " + d.strftime("%d/%m/%y %H:%M:%S"))
         self.stream.writeln("Branch: " + branch)
         self.stream.writeln()
 
     def stopTestRun(self):
         super(Result, self).stopTestRun()
-        self.stream.writeln("Failed Test Cases:")
-        for i in self.failedList:
-            self.stream.writeln(i)
+        if self.failedList != []:
+            self.stream.writeln("Failed Test Cases:")
+            for i in self.failedList:
+                self.stream.writeln(i)
 
     def addSuccess(self, test):
         pass

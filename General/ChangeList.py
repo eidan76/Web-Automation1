@@ -2,16 +2,13 @@
 import unittest
 import time
 from Utils import InitCase, Config
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
 
 class ChangeList(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskOption="open")
         self.verificationErrors = []
 
-        Config.find_element(Config.taskTitle).click()
         Config.find_element(Config.task_FolderSelector).click()
         x = Config.find_element(Config.task_ListSelectorItem).text
         Config.find_element(Config.task_ListSelectorItem).click()

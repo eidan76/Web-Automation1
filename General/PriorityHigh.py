@@ -10,9 +10,8 @@ from Utils import Config, InitCase
 class PriorityHigh(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskOption="open")
         self.verificationErrors = []
-        Config.find_element(Config.taskTitle).click()
 
         Config.wait_for_element(Config.task_PrioritySelectorOff)
         Config.find_element(Config.task_PrioritySelectorOff).click()

@@ -2,14 +2,13 @@
 import unittest
 from selenium.webdriver.common.action_chains import ActionChains
 
-from Utils import InitSuite, Config, InitCase
+from Utils import Config, InitCase
 
 class PriorityHighDrag(unittest.TestCase):
     
     def test(self):
-        InitCase.init_case(menu="ALL", view="priority")
+        taskID = InitCase.init_case(menu="ALL", view="priority")
         self.verificationErrors = []
-        taskID = InitSuite.taskID
 
         ActionChains(Config.get_driver()).drag_and_drop(Config.find_element(Config.taskByID, taskID), Config.find_element(Config.list_sectionByName, "High")).perform()
 
