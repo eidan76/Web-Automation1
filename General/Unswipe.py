@@ -9,7 +9,7 @@ from Utils import InitCase, Config
 class Unswipe(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskNo=None)
         self.verificationErrors = []
 
         Config.find_element(Config.taskTitle).click()

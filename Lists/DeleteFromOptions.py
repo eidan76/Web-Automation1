@@ -5,12 +5,13 @@ from Utils import Config, InitCase
 
 class DeleteFromOptions(unittest.TestCase):
 
-    def test(self):
+    def test(self, listID = None):
         self.verificationErrors = []
-        listID = NewList.listID
-        InitCase.init_case(menu=listID)
+        if listID is None:
+            listID = NewList.listID
+        InitCase.init_case(menu=listID, taskNo=None)
 
-        Config.find_element(Config.menu).click()
+        Config.find_element(Config.menuButton).click()
         Config.find_element(Config.menu_deleteList).click()
         time.sleep(1)
         Config.find_element(Config.listDeleteConfirm).click()

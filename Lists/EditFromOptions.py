@@ -8,10 +8,10 @@ class EditFromOptions(unittest.TestCase):
 
     def test(self):
         listID = NewList.listID
-        InitCase.init_case(menu=listID)
+        InitCase.init_case(menu=listID, taskNo=None)
         self.verificationErrors = []
 
-        Config.find_element(Config.menu).click()
+        Config.find_element(Config.menuButton).click()
         Config.find_element(Config.menu_editList).click()
         time.sleep(1)
         Config.find_element(Config.listTitleEdit).clear()

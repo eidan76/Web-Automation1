@@ -8,10 +8,9 @@ from selenium.common.exceptions import NoSuchElementException
 class EditTitle(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskNo=1, taskOption="open")
         self.verificationErrors = []
 
-        Config.find_element(Config.taskTitle).click()
         Config.wait_for_element(Config.task_editTitle)
 
         Config.find_element(Config.task_editTitle).clear()

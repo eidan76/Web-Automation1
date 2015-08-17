@@ -9,7 +9,7 @@ class PriorityHighAdd(unittest.TestCase):
         InitCase.init_case(menu="ALL", view="priority", taskNo=0)
         self.verificationErrors = []
 
-        taskID = CreateTaskF.create_a_task("priHigh", "High")
+        CreateTaskF.create_a_task("priHigh", "High")
 
         try: self.assertTrue(Config.is_element_present(Config.taskPriority))
         except AssertionError as e: self.verificationErrors.append(str(e))

@@ -8,7 +8,7 @@ class EditFromLongPress(unittest.TestCase):
 
     def test(self):
         listID = NewList.listID
-        InitCase.init_case(menu=listID)
+        InitCase.init_case(menu=listID, taskNo=None)
         self.verificationErrors = []
 
         Config.find_element(Config.listTitle).click()

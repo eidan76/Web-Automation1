@@ -17,10 +17,7 @@ class DeleteMain(unittest.TestCase):
         self.verificationErrors = []
         listID = NewList.listID
 
-        action = ActionChains(Config.get_driver())
-        action.move_to_element(Config.find_element(Config.main_listByID, listID))
-        action.click(Config.find_element(Config.main_listOptionsID, listID))
-        action.perform()
+        ActionChains(Config.get_driver()).move_to_element(Config.find_element(Config.main_listByID, listID)).perform()
         time.sleep(1)
 
         Config.find_element(Config.main_listOptionsID, listID).click()

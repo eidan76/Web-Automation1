@@ -18,7 +18,7 @@ def create_a_task(name, section=None):
 
     Config.find_element(Config.taskCreate_InputBox).clear()
     Config.find_element(Config.taskCreate_InputBox).send_keys(name)
-    time.sleep(1)
+    time.sleep(2)
     Config.find_element(Config.taskCreate_PlusButton).click()
     time.sleep(1)
 

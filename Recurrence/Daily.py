@@ -2,14 +2,16 @@ author__ = 'Eidan Wasser'
 import unittest
 import time
 from selenium.webdriver.common.by import By
-from Utils import InitCase, Config, ClearAllTasks
+from Utils import InitCase, Config, ClearAllTasks, CreateTaskF
 
 class Daily(unittest.TestCase):
 
     def test(self):
-        taskID = InitCase.init_case(menu="ALL", taskOption="open", taskNo=1)
+        InitCase.init_case(menu="ALL", taskNo=0)
+        taskID = CreateTaskF.create_a_task("Daily", "Today")
         self.verificationErrors = []
 
+        Config.find_element(Config.taskTitle).click()
         Config.find_element(Config.task_recurrence).click()
         Config.find_element(Config.recurrenceByType, "DAY").click()
         Config.find_element(Config.recurrence_ok).click()

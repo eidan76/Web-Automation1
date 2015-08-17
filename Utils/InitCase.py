@@ -2,23 +2,33 @@ __author__ = 'Eidan Wasser'
 
 import time
 import Config, ClearAllTasks, CreateTaskF
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 from selenium.webdriver.common.by import By
 
 def init_case(menu="", view="", taskOption="", taskNo = 1):
     taskIDs = None
 
-    #makes sure there is no overlay like when you enter the notification area or settings
-    if Config.find_element(Config.overlay).is_displayed() == True:
-        Config.find_element(Config.overlay).click()
+    # a series of actions to ensure you are not starting the test with an unwanted lightbox
+    counter=0
+    while Config.find_element(Config.overlay).is_displayed():
+        try: Config.find_element(Config.overlay).click()
+        except ElementNotVisibleException: break
+        counter+=1
+        if counter >= 3: raise ElementNotClickableException
     if Config.is_element_present(Config.confirmDialog) == True:
-        Config.find_element(Config.confirmDialog_cancel).click()
+        try: Config.find_element(Config.confirmDialog_cancel).click()
+        except NoSuchElementException: pass
+    if taskOption == "": close_task()
 
-    if menu != "": taskIDs = select_menu(menu, taskNo, view)
+
+
+    # Sends you to the screen you want to be in for any test
+    if menu != "": select_menu(menu)
+    if menu != "MAIN" and taskNo is not None: taskIDs = add_tasks_as_needed(taskNo)
     if view != "": select_view(view)
     if taskOption != "": task_options(taskOption)
-    else: close_task()
     return taskIDs
+
 
 def task_options(taskOption):
 
@@ -32,24 +42,24 @@ def task_options(taskOption):
         Config.find_element([By.CSS_SELECTOR, "span#" + taskOption]).click()
 
 def close_task():
+    counter = 0
+    while Config.is_element_present(Config.task_closeButton):
+        try: Config.find_element(Config.task_closeButton).click()
+        except ElementNotClickableException: break
+        counter+=1
+        if counter >=3: break
 
-    if Config.is_element_present(Config.task_closeButton):
-            try: Config.find_element(Config.task_closeButton).click()
-            except NoSuchElementException: pass
-
-def select_menu(menu, taskNo, view):
+def select_menu(menu):
 
     #Selects a menu for you to be in, "ALL" / "MAIN" / or list ID to enter a specific list
     if menu == "ALL":
-        try:
+        if Config.is_element_present(Config.list):
             if Config.find_element(Config.listTitle).text != "ALL":
                 close_task()
                 Config.find_element(Config.goToMainGrid).click()
                 time.sleep(2)
                 Config.find_element(Config.main_AllTasks).click()
-        except NoSuchElementException:
-            Config.find_element(Config.main_AllTasks).click()
-        return add_tasks_as_needed(taskNo, view)
+        else: Config.find_element(Config.main_AllTasks).click()
 
     elif menu == "MAIN":
         close_task()
@@ -57,23 +67,23 @@ def select_menu(menu, taskNo, view):
         except NoSuchElementException: pass
 
     else:
-        try:
+        if Config.is_element_present(Config.list):
             if Config.find_element(Config.main_ListNameID, menu).text != Config.find_element(Config.listTitle).text:
                 close_task()
-                Config.find_element(Config.listTitle).click()
-                Config.find_element(Config.main_AllTasks).click()
-        except NoSuchElementException:
-            Config.find_element(Config.main_ListNameID, menu).click()
-        return add_tasks_as_needed(taskNo, view)
+                Config.find_element(Config.goToMainGrid).click()
+                time.sleep(2)
+                Config.find_element(Config.main_ListNameID, menu).click()
+        else: Config.find_element(Config.main_ListNameID, menu).click()
 
 def select_view(view):
 
     #Selects a view inside a list
     if view != "":
         if Config.find_element([By.CSS_SELECTOR, "a#" + view]).get_attribute("class") != "view topbar-icon selected":
+            close_task()
             Config.find_element([By.CSS_SELECTOR, "a#" + view]).click()
 
-def add_tasks_as_needed(taskNo, view):
+def add_tasks_as_needed(taskNo):
 
     tasks = Config.find_elements(Config.task)
     activeTasks = Config.find_elements(Config.taskTitleByStatus, "unchecked")
@@ -82,6 +92,7 @@ def add_tasks_as_needed(taskNo, view):
         for t in tasks:
             taskIDs.append(t.get_attribute("data-task-id"))
     else:
+        close_task()
         if tasks != []:
             ClearAllTasks.clear_all_tasks()
         for i in range(taskNo):
@@ -91,3 +102,6 @@ def add_tasks_as_needed(taskNo, view):
     if len(taskIDs) == 1: return taskIDs[0]
     else: return taskIDs
 
+class ElementNotClickableException(Exception):
+    def __str__(self):
+        return "Cannot click element"

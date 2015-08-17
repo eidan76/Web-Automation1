@@ -19,9 +19,9 @@ class PriorityView(unittest.TestCase):
             ActionChains(driver).drag_and_drop_by_offset(n, 0, 90).perform()
 
         Config.find_element(Config.taskTitleID, random.choice(taskIDs)).click()
-        Config.wait_for_element(Config.task_PrioritySelectorOff)
-        Config.find_element(Config.task_PrioritySelectorOff).click()
-        Config.wait_for_element(Config.task_PrioritySelectorOn)
+        Config.wait_for_element(Config.task_PrioritySelector)
+        Config.find_element(Config.task_PrioritySelector).click()
+        time.sleep(2)
         Config.find_element(Config.task_closeButton).click()
         Config.wait_for_element(Config.task_closeButton, present=False)
 

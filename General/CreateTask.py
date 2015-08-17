@@ -8,7 +8,7 @@ from Utils import CreateTaskF, InitCase, Config
 class CreateATask(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", view="date")
+        InitCase.init_case(menu="ALL", view="date", taskNo=0)
         self.verificationErrors = []
 
         global taskID

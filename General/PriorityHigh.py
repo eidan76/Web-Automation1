@@ -13,10 +13,9 @@ class PriorityHigh(unittest.TestCase):
         InitCase.init_case(menu="ALL", taskOption="open")
         self.verificationErrors = []
 
-        Config.wait_for_element(Config.task_PrioritySelectorOff)
-        Config.find_element(Config.task_PrioritySelectorOff).click()
-        Config.wait_for_element(Config.task_PrioritySelectorOn)
-
+        Config.wait_for_element(Config.task_PrioritySelector)
+        Config.find_element(Config.task_PrioritySelector).click()
+        time.sleep(2)
         Config.find_element(Config.task_closeButton).click()
         Config.wait_for_element(Config.task_closeButton, present=False)
 

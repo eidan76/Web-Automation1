@@ -10,6 +10,7 @@ class Delete(unittest.TestCase):
         self.verificationErrors = []
 
         Config.find_element(Config.subtasks_check).click()
+        Config.wait_for_element_visibility(Config.subtasks_markDone)
         Config.find_element(Config.subtasks_markDone).click()
 
         #Check badge

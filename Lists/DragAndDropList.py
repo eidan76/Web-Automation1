@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import unittest, time, NewList
 from Utils import Config, InitCase

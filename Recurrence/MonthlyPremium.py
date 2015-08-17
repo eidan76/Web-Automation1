@@ -2,13 +2,13 @@ __author__ = 'Eidan Wasser'
 import unittest
 import time, datetime
 from selenium.webdriver.common.by import By
-from Utils import InitCase, Config, ChangePremium
+from Utils import InitCase, Config, ChangeUser
 
 class MonthlyPremium(unittest.TestCase):
 
     def test(self):
         d = datetime.datetime.now()
-        ChangePremium.change_to_premium()
+        ChangeUser.change_to_premium()
         taskID = InitCase.init_case(menu="ALL", taskOption="open", taskNo=1)
         self.verificationErrors = []
 
@@ -36,19 +36,19 @@ class MonthlyPremium(unittest.TestCase):
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         try: Config.find_element(Config.task_TimeSelector).text.index(self.next_month_by_day(d))
-        except IndexError as e: self.verificationErrors.append(str(e))
+        except ValueError as e: self.verificationErrors.append(str(e))
 
         self.assertEqual([], self.verificationErrors)
 
     def month_by_day(self, d):
         dl = d + datetime.timedelta(7)
         if dl.month != d.month: return "last " + d.strftime("%A")
-        x = (d.day / 7) + 1
+        x = ((d.day - 1) / 7) + 1
         ordinal = {"1":"first", "2":"second", "3":"third", "4": "fourth", "5": "fifth"}
         return ordinal[str(x)] + " " + d.strftime("%A")
 
     def next_month_by_day(self,d):
-        x = (d.day / 7) + 1
+        x = ((d.day - 1) / 7) + 1
         n = d
         while n.month == d.month:
             n += datetime.timedelta(7)

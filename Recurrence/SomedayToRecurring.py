@@ -5,13 +5,14 @@ import time
 from selenium.webdriver.common.by import By
 from Utils import InitCase, Config, CreateTaskF
 
-class Daily(unittest.TestCase):
+class SomedayToRecurring(unittest.TestCase):
 
     def test(self):
-        InitCase.init_case(menu="ALL", taskOption="open", taskNo=0)
+        InitCase.init_case(menu="ALL", taskNo=0)
         self.verificationErrors = []
         taskID = CreateTaskF.create_a_task("Someday", "Someday")
 
+        Config.find_element(Config.taskTitle).click()
         Config.find_element(Config.task_recurrence).click()
         Config.find_element(Config.recurrenceByType, "DAY").click()
         Config.find_element(Config.recurrence_ok).click()

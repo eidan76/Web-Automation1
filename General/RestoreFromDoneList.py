@@ -28,8 +28,7 @@ class RestoreFromDeleted(unittest.TestCase):
         else: self.fail("time out")
 
         Config.find_element(Config.overlay).click()
-        Config.find_element(Config.menu).click()
-        Config.find_element(Config.sync).click()
+        Config.sync()
         Config.wait_for_element(Config.taskTitle)
 
         try: self.assertEqual("edited", Config.find_element(Config.taskTitle).text)

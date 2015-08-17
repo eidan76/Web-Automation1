@@ -3,7 +3,7 @@ import unittest
 import time, datetime, random
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from Utils import InitCase, Config, ChangePremium
+from Utils import InitCase, Config, ChangeUser
 
 class XDays(unittest.TestCase):
 
@@ -12,7 +12,7 @@ class XDays(unittest.TestCase):
         X = random.choice(range(1,10))
         Y = random.choice(range(1,4))
 
-        ChangePremium.change_to_premium()
+        ChangeUser.change_to_premium()
         taskID = InitCase.init_case(menu="ALL", taskOption="open", taskNo=1)
         self.verificationErrors = []
 

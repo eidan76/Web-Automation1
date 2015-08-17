@@ -4,6 +4,7 @@ import ListView
 import ListViewALL
 import PriorityView
 import DateView
+import MainGrid
 
 def positioning():
     n = unittest.TestSuite()
@@ -12,5 +13,6 @@ def positioning():
     n.addTest(ListViewALL.ListViewALL("test"))
     n.addTest(PriorityView.PriorityView("test"))
     n.addTest(DateView.DateView("test"))
+    n.addTest(MainGrid.MainGrid("test"))
 
     return n

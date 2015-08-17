@@ -30,6 +30,9 @@ class SignUp(unittest.TestCase):
         try: self.assertEqual("HI " + date, Config.find_element(Config.main_hayush).text)
         except AssertionError as e: self.verificationErrors.append(str(e))
 
+        #return user email
+        return date + "@any.do"
+
         # after test case is complete, all the 'verify' commands that have failed are raised
         self.assertEqual([], self.verificationErrors)
 

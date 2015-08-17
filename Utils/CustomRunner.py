@@ -14,14 +14,14 @@ class Result(result.TestResult):
     """
     separator1 = '=' * 70
     separator2 = '-' * 70
-    tab = " " * 9
     failedList = []
 
-    def __init__(self, stream, descriptions, verbosity, runName):
+    def __init__(self, stream, descriptions, verbosity, runName, base_url):
         super(Result, self).__init__(stream, descriptions, verbosity)
         self.stream = stream
         self.descriptions = descriptions
         self.runName = runName
+        self.base_url = base_url
 
     def getDescription(self, test):
         doc_first_line = test.shortDescription()
@@ -37,8 +37,9 @@ class Result(result.TestResult):
     def startTestRun(self):
         branch = "Placeholder"
         d = datetime.datetime.now()
-        self.stream.writeln("Test Run: " + self.runName + self.tab + "Start time: " + d.strftime("%d/%m/%y %H:%M:%S"))
-        self.stream.writeln("Branch: " + branch)
+        tab = (48 - len(self.runName) - len(d.strftime("%d/%m/%y %H:%M:%S"))) * " "
+        self.stream.writeln("Test Run: " + self.runName + tab + "Start time: " + d.strftime("%d/%m/%y %H:%M:%S"))
+        self.stream.writeln("Branch: " + self.base_url)
         self.stream.writeln()
 
     def stopTestRun(self):
@@ -110,18 +111,19 @@ class Runner(object):
     resultclass = Result
 
     def __init__(self, stream=sys.stderr, descriptions=True, verbosity=1,
-                 failfast=False, buffer=False, resultclass=None, runName=None):
+                 failfast=False, buffer=False, resultclass=None, runName=None, base_url=None):
         self.stream = _WritelnDecorator(stream)
         self.descriptions = descriptions
         self.verbosity = verbosity
         self.failfast = failfast
         self.buffer = buffer
         self.runName = runName
+        self.base_url = base_url
         if resultclass is not None:
             self.resultclass = resultclass
 
     def _makeResult(self):
-        return self.resultclass(self.stream, self.descriptions, self.verbosity, self.runName)
+        return self.resultclass(self.stream, self.descriptions, self.verbosity, self.runName, self.base_url)
 
     def run(self, test):
         "Run the given test case or test suite."

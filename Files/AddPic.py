@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest, time
-from Utils import Config, InitCase
+from Utils import Config, InitCase,ChangeUser
 
 class AddPic(unittest.TestCase):
     
     def test(self):
+        ChangeUser.change_to_premium()
+        InitCase.init_case(menu="ALL", taskNo=0)
         InitCase.init_case(menu="ALL", taskOption="files")
         self.verificationErrors = []
 

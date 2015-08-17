@@ -13,10 +13,10 @@ class PriorityNormal(unittest.TestCase):
         InitCase.init_case(menu="ALL", taskOption="open")
         self.verificationErrors = []
 
-        Config.wait_for_element(Config.task_PrioritySelectorOn)
-        Config.find_element(Config.task_PrioritySelectorOn).click()
-        Config.wait_for_element(Config.task_PrioritySelectorOff)
-        
+        Config.wait_for_element(Config.task_PrioritySelector)
+        Config.find_element(Config.task_PrioritySelector).click()
+        time.sleep(1)
+
         Config.find_element(Config.task_closeButton).click()
         Config.wait_for_element(Config.task_closeButton, present=False)
         

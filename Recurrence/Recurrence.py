@@ -18,6 +18,7 @@ def recurrence():
     n.addTest(Monthly.Monthly("test"))
     n.addTest(Yearly.Yearly("test"))
     n.addTest(DragToSomeday.DragSomeday("test"))
+    n.addTest(SomedayToRecurring.SomedayToRecurring("test"))
     n.addTest(WeeklyPremium.WeeklyPremium("test"))
     n.addTest(MonthlyPremium.MonthlyPremium("test"))
     n.addTest(XDays.XDays("test"))

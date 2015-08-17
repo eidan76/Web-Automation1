@@ -10,21 +10,10 @@ class Delete(unittest.TestCase):
 
     def test(self):
 
-        InitCase.init_case(menu="ALL")
+        InitCase.init_case(menu="ALL", taskNo=0)
         self.verificationErrors = []
 
-        Config.find_element(Config.taskCheck).click()
-        time.sleep(1)
-
-        for i in range(5):
-            try:
-                Config.find_element(Config.taskMarkDone).click()
-                break
-            except: pass
-            time.sleep(1)
-        else: self.fail("time out")
-
-        try: self.assertFalse(Config.is_element_present(Config.taskByID))
+        try: self.assertFalse(Config.is_element_present(Config.task))
         except AssertionError as e: self.verificationErrors.append(str(e))
 
         self.assertEqual([], self.verificationErrors)

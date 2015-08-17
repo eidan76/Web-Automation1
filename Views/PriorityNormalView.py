@@ -1,6 +1,6 @@
 __author__ = 'Eidan Wasser'
 # -*- coding: utf-8 -*-
-import unittest
+import unittest, time
 
 from Utils import Config, InitCase
 
@@ -12,9 +12,9 @@ class PriorityNormalView(unittest.TestCase):
 
         Config.find_element(Config.taskTitle).click()
 
-        Config.wait_for_element(Config.task_PrioritySelectorOn)
-        Config.find_element(Config.task_PrioritySelectorOn).click()
-        Config.wait_for_element(Config.task_PrioritySelectorOff)
+        Config.wait_for_element(Config.task_PrioritySelector)
+        Config.find_element(Config.task_PrioritySelector).click()
+        time.sleep(1)
 
         Config.find_element(Config.task_closeButton).click()
         Config.wait_for_element(Config.task_closeButton, present=False)
